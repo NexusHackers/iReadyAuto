@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00bfff;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+header {
+    margin-top: 50px;
+}
+
+.logo-img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 20px 0;
+    font-size: 2.5em;
+    text-transform: uppercase;
+}
+
+h2 {
+    margin: 40px 0;
+    font-size: 2em;
+}
+
+.preorder-section p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.neon-button {
+    background-color: transparent;
+    border: 2px solid #00bfff;
+    padding: 10px 30px;
+    color: #00bfff;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.neon-button:hover {
+    background-color: #00bfff;
+    color: #000;
+    box-shadow: 0 0 20px #00bfff, 0 0 30px #00bfff;
+}
+
+.hidden {
+    display: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input {
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #00bfff;
+    background-color: transparent;
+    color: #00bfff;
+    font-size: 1em;
+    width: 300px;
+}
+
+.error-message {
+    color: #ff0000;
+    font-size: 0.9em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.error-message.visible {
+    opacity: 1;
+    animation: neon-flicker 1.5s infinite;
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 2px #ff0000, 
+            0 0 5px #ff0000,
+            0 0 10px #ff0000,
+            0 0 20px #ff007f, 
+            0 0 30px #ff007f,
+            0 0 40px #ff007f,
+            0 0 50px #ff007f;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 0.8em;
+    color: #777;
+    text-align: center;
+}
+
+footer .logos {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nexus-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+footer .socials {
+    margin-top: 20px;
+}
+
+footer .socials a {
+    color: #00bfff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer .socials a:hover {
+    color: #ff007f;
+}
