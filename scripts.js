@@ -10,24 +10,27 @@ const emailInput = document.getElementById("email");
 })();
 
 function sendPreorderEmail(event) {
-    event.preventDefault(); // Prevent the default form submission
+    if (not (emailInput.validity.valueMissing) && not (emailInput.validity.valueMissing) && not(emailInput.validity.typeMismatch)) {
+        event.preventDefault(); // Prevent the default form submission
 
-    const btn = event.target; // Get the button that was clicked
-    btn.textContent = 'Pre-ordering...'; // Change button text to indicate sending
+        const btn = event.target; // Get the button that was clicked
+        btn.textContent = 'Pre-ordering...'; // Change button text to indicate sending
 
-    const serviceID = 'service_m33nvbu'; // Replace with your EmailJS service ID
-    const templateID = 'template_tzj3p5e'; // Replace with your EmailJS template ID
+        const serviceID = 'service_m33nvbu'; // Replace with your EmailJS service ID
+        const templateID = 'template_tzj3p5e'; // Replace with your EmailJS template ID
 
-    // Send the form directly using EmailJS
-    emailjs.sendForm(serviceID, templateID, document.getElementById('preorderForm'))
-        .then(() => {
-            btn.textContent = 'Submit'; // Reset button text
-            alert('Thank you for pre-ordering iReadyAuto!'); // Alert for success
-            window.location.reload()
-        }, (err) => {
-            btn.textContent = 'Submit'; // Reset button text on error
-            alert('Failed to pre-order: ' + JSON.stringify(err)); // Alert for error
-        });
+        // Send the form directly using EmailJS
+        emailjs.sendForm(serviceID, templateID, document.getElementById('preorderForm'))
+            .then(() => {
+                btn.textContent = 'Submit'; // Reset button text
+                alert('Thank you for pre-ordering iReadyAuto!'); // Alert for success
+                window.location.reload()
+            }, (err) => {
+                btn.textContent = 'Submit'; // Reset button text on error
+                alert('Failed to pre-order: ' + JSON.stringify(err)); // Alert for error
+            });
+    } 
+    
 }
 
 // Create elements to hold custom error messages
