@@ -9,9 +9,8 @@ const emailInput = document.getElementById("email");
     emailjs.init("9F1krai-sc2Z_XyXC"); // Replace with your User ID from EmailJS
 })();
 
-function sendPreorderEmail(event) {
-    if (not (emailInput.validity.valueMissing) && not (emailInput.validity.valueMissing) && not(emailInput.validity.typeMismatch)) {
-        event.preventDefault(); // Prevent the default form submission
+function sendEmail() {
+    event.preventDefault(); // Prevent the default form submission
 
         const btn = event.target; // Get the button that was clicked
         btn.textContent = 'Pre-ordering...'; // Change button text to indicate sending
@@ -29,6 +28,12 @@ function sendPreorderEmail(event) {
                 btn.textContent = 'Submit'; // Reset button text on error
                 alert('Failed to pre-order: ' + JSON.stringify(err)); // Alert for error
             });
+}
+
+
+function sendPreorderEmail(event) {
+    if (not (emailInput.validity.valueMissing) && not (emailInput.validity.valueMissing) && not(emailInput.validity.typeMismatch)) {
+        sendEmail(event)
     } 
     
 }
