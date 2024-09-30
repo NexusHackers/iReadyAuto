@@ -99,39 +99,34 @@ preorderForm.addEventListener("submit", sendPreorderEmail);
 const texts = [
     "Ready, Set, Efficiency Unlocked!",
     "Let iReadyAuto handle the work!",
-    "Automating iReady, saving you time!", 
-    "iReady Made Easy: Let Us Do the Work!",
-    "Efficiency Meets Education: iReady, Automated!",
-    "Say Goodbye to iReady Stress—We’ve Got This!",
-    "Smart Learning, Smarter Automation!",
-    "Your iReady Assistant: Learning Without Limits!",
-    "Transforming iReady into Effortless Success!",
-    "Unlock Your Learning Potential: We Handle iReady!",
-    "Revolutionizing Homework: Let iReadyAuto Lead the Way!",
-    "Learning Simplified: Automated iReady at Your Service!",
-    "Let Us Power Your Progress: iReady, Done Right!"
-]; // List of possible texts
-  
-let textIndex = Math.floor(Math.random() * texts.length);  // Randomly choose one text
-let charIndex = 0;  // Index for current character
+    "Automating iReady, saving you time!"
+]; 
+
+let textIndex = Math.floor(Math.random() * texts.length);  
+let charIndex = 0;  
 const headerElement = document.getElementById('header');
-  
+const cursorElement = document.querySelector('.cursor');
+
 function getRandomTypingSpeed() {
-    return Math.floor(Math.random() * (70 - 65 + 1)) + 65; // Random speed between 65 and 70 ms
+    return Math.floor(Math.random() * (70 - 65 + 1)) + 65; 
 }
-  
+
 function typeText() {
     const currentText = texts[textIndex];
-    
-    // Display the current substring of the text
+
     headerElement.textContent = currentText.substring(0, charIndex);
+    cursorElement.style.display = 'inline';
 
     if (charIndex < currentText.length) {
-        // Keep typing if there are more characters
         charIndex++;
-        setTimeout(typeText, getRandomTypingSpeed()); // Random typing speed for each character
+        setTimeout(typeText, getRandomTypingSpeed());
+    } else {
+        cursorElement.style.display = 'inline';
     }
 }
+
+window.onload = typeText;
+
   
 // Start typing when the page loads
 window.onload = typeText;
