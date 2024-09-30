@@ -99,7 +99,17 @@ preorderForm.addEventListener("submit", sendPreorderEmail);
 const texts = [
     "Ready, Set, Efficiency Unlocked!",
     "Let iReadyAuto handle the work!",
-    "Automating iReady, saving you time!"
+    "Automating iReady, saving you time!", 
+    "iReady Made Easy: Let Us Do the Work!",
+    "Efficiency Meets Education: iReady, Automated!",
+    "Say Goodbye to iReady Stress—We’ve Got This!",
+    "Smart Learning, Smarter Automation!",
+    "Your iReady Assistant: Learning Without Limits!",
+    "Transforming iReady into Effortless Success!",
+    "Unlock Your Learning Potential: We Handle iReady!",
+    "Revolutionizing Homework: Let iReadyAuto Lead the Way!",
+    "Learning Simplified: Automated iReady at Your Service!",
+    "Let Us Power Your Progress: iReady, Done Right!"
 ]; // List of possible texts
   
 let textIndex = Math.floor(Math.random() * texts.length);  // Randomly choose one text
