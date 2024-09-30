@@ -58,20 +58,26 @@ h1 {
     margin: 20px 0;
     font-size: 2.5em;
     text-transform: uppercase;
-    border-right: 0.15em solid rgba(0, 191, 255, 1); /* Blinking cursor */
-    animation: blink 0.7s infinite; /* Cursor blink effect */
-    display: inline-block;
-    white-space: normal; /* Allow normal wrapping */
+    display: inline;
+    white-space: normal;
+    word-wrap: break-word;
     overflow: hidden;
-    max-width: 100%; /* Prevents text overflow */
-    word-wrap: break-word; /* Ensure long words wrap to the next line */
+    max-width: 100%;
+    border: none;
+}
+
+.cursor {
+    display: inline-block;
+    border-left: 0.15em solid rgba(0, 191, 255, 1); /* Blinking cursor */
+    animation: blink 0.7s infinite; /* Cursor blink effect */
 }
 
 @keyframes blink {
-    0% { border-right-color: rgba(0, 191, 255, 1); }
-    50% { border-right-color: transparent; }
-    100% { border-right-color: rgba(0, 191, 255, 1); }
+    0% { border-color: rgba(0, 191, 255, 1); }
+    50% { border-color: transparent; }
+    100% { border-color: rgba(0, 191, 255, 1); }
 }
+
 
 h2 {
     margin: 40px 0;
