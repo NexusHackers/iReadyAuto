@@ -10,7 +10,6 @@ const emailInput = document.getElementById("email");
 })();
 
 function sendPreorderEmail(event) {
-    alert("Hi :)")
     if (not (emailInput.validity.valueMissing) && not (emailInput.validity.valueMissing) && not(emailInput.validity.typeMismatch)) {
         event.preventDefault(); // Prevent the default form submission
 
