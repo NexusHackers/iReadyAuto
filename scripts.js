@@ -9,33 +9,38 @@ const emailInput = document.getElementById("email");
     emailjs.init("9F1krai-sc2Z_XyXC"); // Replace with your User ID from EmailJS
 })();
 
-function sendEmail() {
+function sendEmail(event) {
     event.preventDefault(); // Prevent the default form submission
 
-        const btn = event.target; // Get the button that was clicked
-        btn.textContent = 'Pre-ordering...'; // Change button text to indicate sending
+    const btn = document.querySelector(".neon-button[type='submit']"); // Get the button that was clicked
+    btn.textContent = 'Pre-ordering...'; // Change button text to indicate sending
 
-        const serviceID = 'service_m33nvbu'; // Replace with your EmailJS service ID
-        const templateID = 'template_tzj3p5e'; // Replace with your EmailJS template ID
+    const serviceID = 'service_m33nvbu'; // Replace with your EmailJS service ID
+    const templateID = 'template_tzj3p5e'; // Replace with your EmailJS template ID
 
-        // Send the form directly using EmailJS
-        emailjs.sendForm(serviceID, templateID, document.getElementById('preorderForm'))
-            .then(() => {
-                btn.textContent = 'Submit'; // Reset button text
-                alert('Thank you for pre-ordering iReadyAuto!'); // Alert for success
-                window.location.reload()
-            }, (err) => {
-                btn.textContent = 'Submit'; // Reset button text on error
-                alert('Failed to pre-order: ' + JSON.stringify(err)); // Alert for error
-            });
+    // Send the form directly using EmailJS
+    emailjs.sendForm(serviceID, templateID, preorderForm)
+        .then(() => {
+            btn.textContent = 'Submit'; // Reset button text
+            alert('Thank you for pre-ordering iReadyAuto!'); // Alert for success
+            window.location.reload();
+        }, (err) => {
+            btn.textContent = 'Submit'; // Reset button text on error
+            alert('Failed to pre-order: ' + JSON.stringify(err)); // Alert for error
+        });
 }
 
-
 function sendPreorderEmail(event) {
-    if (not (emailInput.validity.valueMissing) && not (emailInput.validity.valueMissing) && not(emailInput.validity.typeMismatch)) {
-        sendEmail(event)
-    } 
-    
+    event.preventDefault(); // Prevent form submission if not valid
+
+    // Validate inputs
+    if (!nameInput.validity.valueMissing && !emailInput.validity.valueMissing && !emailInput.validity.typeMismatch) {
+        sendEmail(event);
+    } else {
+        // Trigger custom validation messages
+        nameInput.dispatchEvent(new Event('input'));
+        emailInput.dispatchEvent(new Event('input'));
+    }
 }
 
 // Create elements to hold custom error messages
@@ -88,51 +93,35 @@ emailInput.addEventListener("input", function () {
 });
 
 // Handle form submission
-preorderForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    // Trigger validity check for all fields
-    nameInput.dispatchEvent(new Event('input'));
-    emailInput.dispatchEvent(new Event('input'));
-    
-    // If everything is valid, proceed
-    if (nameInput.checkValidity() && emailInput.checkValidity()) {
-        var name = document.getElementById('name').value;
-        var email = document.getElementById('email').value;
-        var currentDateTime = new Date().toLocaleString(); // You can customize the format as needed
-        alert("Thank you for pre-ordering iReadyAuto!");
-        sendEmail("nexus.hecker@gmail.com", "iReadyAuto Pre-order", 'Hi')
-        window.location.reload()
-    }
-});
+preorderForm.addEventListener("submit", sendPreorderEmail);
 
+// Typing effect code
 const texts = [
     "Ready, Set, Efficiency Unlocked!",
     "Let iReadyAuto handle the work!",
     "Automating iReady, saving you time!"
-  ]; // List of possible texts
+]; // List of possible texts
   
-  let textIndex = Math.floor(Math.random() * texts.length);  // Randomly choose one text
-  let charIndex = 0;  // Index for current character
-  const headerElement = document.getElementById('header');
+let textIndex = Math.floor(Math.random() * texts.length);  // Randomly choose one text
+let charIndex = 0;  // Index for current character
+const headerElement = document.getElementById('header');
   
-  function getRandomTypingSpeed() {
-      return Math.floor(Math.random() * (70 - 65 + 1)) + 65; // Random speed between 65 and 70 ms
-  }
+function getRandomTypingSpeed() {
+    return Math.floor(Math.random() * (70 - 65 + 1)) + 65; // Random speed between 65 and 70 ms
+}
   
-  function typeText() {
-      const currentText = texts[textIndex];
-      
-      // Display the current substring of the text
-      headerElement.textContent = currentText.substring(0, charIndex);
+function typeText() {
+    const currentText = texts[textIndex];
+    
+    // Display the current substring of the text
+    headerElement.textContent = currentText.substring(0, charIndex);
+
+    if (charIndex < currentText.length) {
+        // Keep typing if there are more characters
+        charIndex++;
+        setTimeout(typeText, getRandomTypingSpeed()); // Random typing speed for each character
+    }
+}
   
-      if (charIndex < currentText.length) {
-          // Keep typing if there are more characters
-          charIndex++;
-          setTimeout(typeText, getRandomTypingSpeed()); // Random typing speed for each character
-      }
-  }
-  
-  // Start typing when the page loads
-  window.onload = typeText;
-  
+// Start typing when the page loads
+window.onload = typeText;
